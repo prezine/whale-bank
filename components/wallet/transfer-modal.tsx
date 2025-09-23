@@ -67,7 +67,12 @@ export function TransferModal({ open, onOpenChange }: TransferModalProps) {
         <DialogHeader>
           <DialogTitle>Send Money</DialogTitle>
         </DialogHeader>
-
+        <div className="w-full bg-red-500 px-4 py-2 rounded-sm">
+          <p className="text-white">
+            Your Account has been restricted. Contact your bank for
+            rectification
+          </p>
+        </div>
         <Tabs
           value={transferType}
           onValueChange={setTransferType}
@@ -260,7 +265,7 @@ export function TransferModal({ open, onOpenChange }: TransferModalProps) {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="flex-1" disabled={isLoading}>
+              <Button type="submit" className="flex-1 opacity-50 cursor-not-allowed" disabled={isLoading}>
                 {isLoading ? "Processing..." : "Send Money"}
               </Button>
             </div>
