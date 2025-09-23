@@ -262,7 +262,11 @@ export function TransactionList({ filters }: TransactionListProps) {
                       transaction.type === "deposit"
                         ? "+"
                         : "-"}
-                      ${transaction.amount.toFixed(2)}
+                      $
+                      {transaction.amount.toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
                     </p>
                     <Badge className={getStatusColor(transaction.status)}>
                       {transaction.status}
