@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowUpDown } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ArrowUpDown } from "lucide-react";
 
 const currencies = [
   { code: "USD", name: "US Dollar", rate: 1 },
@@ -14,26 +20,26 @@ const currencies = [
   { code: "GBP", name: "British Pound", rate: 0.73 },
   { code: "JPY", name: "Japanese Yen", rate: 110.0 },
   { code: "CAD", name: "Canadian Dollar", rate: 1.25 },
-]
+];
 
 export function CurrencyConverter() {
-  const [amount, setAmount] = useState("100")
-  const [fromCurrency, setFromCurrency] = useState("USD")
-  const [toCurrency, setToCurrency] = useState("EUR")
-  const [result, setResult] = useState("")
+  const [amount, setAmount] = useState("100");
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("EUR");
+  const [result, setResult] = useState("");
 
   const handleConvert = () => {
-    const fromRate = currencies.find((c) => c.code === fromCurrency)?.rate || 1
-    const toRate = currencies.find((c) => c.code === toCurrency)?.rate || 1
-    const convertedAmount = (Number.parseFloat(amount) / fromRate) * toRate
-    setResult(convertedAmount.toFixed(2))
-  }
+    const fromRate = currencies.find((c) => c.code === fromCurrency)?.rate || 1;
+    const toRate = currencies.find((c) => c.code === toCurrency)?.rate || 1;
+    const convertedAmount = (Number.parseFloat(amount) / fromRate) * toRate;
+    setResult(convertedAmount.toFixed(2));
+  };
 
   const handleSwap = () => {
-    setFromCurrency(toCurrency)
-    setToCurrency(fromCurrency)
-    setResult("")
-  }
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+    setResult("");
+  };
 
   return (
     <Card>
@@ -106,5 +112,5 @@ export function CurrencyConverter() {
         )}
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { DashboardLayout } from "@/components/layout/dashboard-layout"
-import { ProfileSettings } from "@/components/settings/profile-settings"
-import { NotificationSettings } from "@/components/settings/notification-settings"
-import { SecuritySettings } from "@/components/settings/security-settings"
-import { AccountSettings } from "@/components/settings/account-settings"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { User, Bell, Shield, SettingsIcon } from "lucide-react"
+import { DashboardLayout } from "@/components/layout/dashboard-layout";
+import { ProfileSettings } from "@/components/settings/profile-settings";
+import { NotificationSettings } from "@/components/settings/notification-settings";
+import { SecuritySettings } from "@/components/settings/security-settings";
+import { AccountSettings } from "@/components/settings/account-settings";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { User, Bell, Shield, SettingsIcon } from "lucide-react";
 
 export default function SettingsPage() {
   return (
@@ -54,5 +54,5 @@ export default function SettingsPage() {
         </Tabs>
       </div>
     </DashboardLayout>
-  )
+  );
 }

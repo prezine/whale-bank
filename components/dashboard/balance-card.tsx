@@ -7,8 +7,8 @@ import { useState } from "react";
 
 export function BalanceCard() {
   const [showBalance, setShowBalance] = useState(true);
-  const balance = 24567.89;
-  const monthlyChange = 1234.56;
+  const balance = 1428567.89;
+  const monthlyChange = 128.94;
   const changePercentage = 5.2;
 
   return (

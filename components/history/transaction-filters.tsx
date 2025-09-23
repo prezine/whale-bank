@@ -1,26 +1,35 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { Search, Filter, Download } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Search, Filter, Download } from "lucide-react";
 
 interface TransactionFiltersProps {
   filters: {
-    search: string
-    type: string
-    status: string
-    dateRange: string
-    account: string
-  }
-  onFiltersChange: (filters: any) => void
+    search: string;
+    type: string;
+    status: string;
+    dateRange: string;
+    account: string;
+  };
+  onFiltersChange: (filters: any) => void;
 }
 
-export function TransactionFilters({ filters, onFiltersChange }: TransactionFiltersProps) {
+export function TransactionFilters({
+  filters,
+  onFiltersChange,
+}: TransactionFiltersProps) {
   const updateFilter = (key: string, value: string) => {
-    onFiltersChange({ ...filters, [key]: value })
-  }
+    onFiltersChange({ ...filters, [key]: value });
+  };
 
   const clearFilters = () => {
     onFiltersChange({
@@ -29,8 +38,8 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
       status: "all",
       dateRange: "all",
       account: "all",
-    })
-  }
+    });
+  };
 
   return (
     <Card>
@@ -51,7 +60,10 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Type</label>
-              <Select value={filters.type} onValueChange={(value) => updateFilter("type", value)}>
+              <Select
+                value={filters.type}
+                onValueChange={(value) => updateFilter("type", value)}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -67,7 +79,10 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Status</label>
-              <Select value={filters.status} onValueChange={(value) => updateFilter("status", value)}>
+              <Select
+                value={filters.status}
+                onValueChange={(value) => updateFilter("status", value)}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -82,7 +97,10 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Date Range</label>
-              <Select value={filters.dateRange} onValueChange={(value) => updateFilter("dateRange", value)}>
+              <Select
+                value={filters.dateRange}
+                onValueChange={(value) => updateFilter("dateRange", value)}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -99,7 +117,10 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Account</label>
-              <Select value={filters.account} onValueChange={(value) => updateFilter("account", value)}>
+              <Select
+                value={filters.account}
+                onValueChange={(value) => updateFilter("account", value)}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -115,7 +136,11 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
 
           {/* Action Buttons */}
           <div className="flex items-center justify-between pt-4 border-t">
-            <Button variant="outline" onClick={clearFilters} className="gap-2 bg-transparent">
+            <Button
+              variant="outline"
+              onClick={clearFilters}
+              className="gap-2 bg-transparent"
+            >
               <Filter className="h-4 w-4" />
               Clear Filters
             </Button>
@@ -127,5 +152,5 @@ export function TransactionFilters({ filters, onFiltersChange }: TransactionFilt
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

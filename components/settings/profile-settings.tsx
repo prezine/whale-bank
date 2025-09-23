@@ -1,49 +1,61 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Camera, Save } from "lucide-react"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Camera, Save } from "lucide-react";
 
 export function ProfileSettings() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [profileData, setProfileData] = useState({
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+1 (555) 123-4567",
-    address: "123 Main Street",
-    city: "New York",
-    state: "NY",
-    zipCode: "10001",
-    country: "United States",
+    firstName: "Matt",
+    lastName: "Walst",
+    email: "mattwalst316@gmail.com",
+    phone: "",
+    address: "",
+    city: "Toronto",
+    state: "Alberta",
+    zipCode: "A0A 0A0",
+    country: "Canada",
     dateOfBirth: "1990-01-15",
-    occupation: "Software Engineer",
-    bio: "Passionate about technology and finance.",
-  })
+    occupation: "Artist",
+    bio: "",
+  });
 
   const handleInputChange = (field: string, value: string) => {
-    setProfileData((prev) => ({ ...prev, [field]: value }))
-  }
+    setProfileData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    setIsLoading(false)
+    setIsLoading(false);
     // Show success message
-    alert("Profile updated successfully!")
-  }
+    alert("Profile updated successfully!");
+  };
 
   return (
     <div className="space-y-6">
@@ -56,7 +68,7 @@ export function ProfileSettings() {
         <CardContent>
           <div className="flex items-center gap-6">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="/professional-headshot.png" />
+              <AvatarImage src="/dp.jpeg" />
               <AvatarFallback className="text-2xl">
                 {profileData.firstName[0]}
                 {profileData.lastName[0]}
@@ -67,7 +79,9 @@ export function ProfileSettings() {
                 <Camera className="h-4 w-4" />
                 Change Photo
               </Button>
-              <p className="text-sm text-muted-foreground">JPG, PNG or GIF. Max size 2MB.</p>
+              <p className="text-sm text-muted-foreground">
+                JPG, PNG or GIF. Max size 2MB.
+              </p>
             </div>
           </div>
         </CardContent>
@@ -87,7 +101,9 @@ export function ProfileSettings() {
                 <Input
                   id="firstName"
                   value={profileData.firstName}
-                  onChange={(e) => handleInputChange("firstName", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("firstName", e.target.value)
+                  }
                   required
                 />
               </div>
@@ -96,7 +112,9 @@ export function ProfileSettings() {
                 <Input
                   id="lastName"
                   value={profileData.lastName}
-                  onChange={(e) => handleInputChange("lastName", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("lastName", e.target.value)
+                  }
                   required
                 />
               </div>
@@ -167,14 +185,19 @@ export function ProfileSettings() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="country">Country</Label>
-                <Select value={profileData.country} onValueChange={(value) => handleInputChange("country", value)}>
+                <Select
+                  value={profileData.country}
+                  onValueChange={(value) => handleInputChange("country", value)}
+                >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="United States">United States</SelectItem>
                     <SelectItem value="Canada">Canada</SelectItem>
-                    <SelectItem value="United Kingdom">United Kingdom</SelectItem>
+                    <SelectItem value="United Kingdom">
+                      United Kingdom
+                    </SelectItem>
                     <SelectItem value="Australia">Australia</SelectItem>
                   </SelectContent>
                 </Select>
@@ -185,7 +208,9 @@ export function ProfileSettings() {
                   id="dateOfBirth"
                   type="date"
                   value={profileData.dateOfBirth}
-                  onChange={(e) => handleInputChange("dateOfBirth", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("dateOfBirth", e.target.value)
+                  }
                   required
                 />
               </div>
@@ -196,7 +221,9 @@ export function ProfileSettings() {
               <Input
                 id="occupation"
                 value={profileData.occupation}
-                onChange={(e) => handleInputChange("occupation", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("occupation", e.target.value)
+                }
               />
             </div>
 
@@ -219,5 +246,5 @@ export function ProfileSettings() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,60 +1,98 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Badge } from "@/components/ui/badge"
-import { Eye, EyeOff, Shield, Smartphone, Key, AlertTriangle } from "lucide-react"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import {
+  Eye,
+  EyeOff,
+  Shield,
+  Smartphone,
+  Key,
+  AlertTriangle,
+} from "lucide-react";
 
 export function SecuritySettings() {
-  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
-  const [showNewPassword, setShowNewPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
-  })
+  });
   const [securitySettings, setSecuritySettings] = useState({
     twoFactorAuth: true,
     biometricAuth: false,
     loginNotifications: true,
     sessionTimeout: true,
-  })
+  });
 
   const handlePasswordChange = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert("New passwords don't match")
-      return
+      alert("New passwords don't match");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
 
     // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    setIsLoading(false)
-    setPasswordData({ currentPassword: "", newPassword: "", confirmPassword: "" })
-    alert("Password updated successfully!")
-  }
+    setIsLoading(false);
+    setPasswordData({
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    });
+    alert("Password updated successfully!");
+  };
 
   const handleToggle = (key: string) => {
-    setSecuritySettings((prev) => ({ ...prev, [key]: !prev[key as keyof typeof prev] }))
-  }
+    setSecuritySettings((prev) => ({
+      ...prev,
+      [key]: !prev[key as keyof typeof prev],
+    }));
+  };
 
   const trustedDevices = [
-    { id: 1, name: "iPhone 13 Pro", location: "New York, NY", lastUsed: "2 hours ago", current: true },
-    { id: 2, name: "MacBook Pro", location: "New York, NY", lastUsed: "1 day ago", current: false },
-    { id: 3, name: "Chrome on Windows", location: "New York, NY", lastUsed: "3 days ago", current: false },
-  ]
+    {
+      id: 1,
+      name: "iPhone 13 Pro",
+      location: "New York, NY",
+      lastUsed: "2 hours ago",
+      current: true,
+    },
+    {
+      id: 2,
+      name: "MacBook Pro",
+      location: "New York, NY",
+      lastUsed: "1 day ago",
+      current: false,
+    },
+    {
+      id: 3,
+      name: "Chrome on Windows",
+      location: "New York, NY",
+      lastUsed: "3 days ago",
+      current: false,
+    },
+  ];
 
   return (
     <div className="space-y-6">
@@ -76,7 +114,12 @@ export function SecuritySettings() {
                   id="currentPassword"
                   type={showCurrentPassword ? "text" : "password"}
                   value={passwordData.currentPassword}
-                  onChange={(e) => setPasswordData((prev) => ({ ...prev, currentPassword: e.target.value }))}
+                  onChange={(e) =>
+                    setPasswordData((prev) => ({
+                      ...prev,
+                      currentPassword: e.target.value,
+                    }))
+                  }
                   required
                   className="pr-10"
                 />
@@ -103,7 +146,12 @@ export function SecuritySettings() {
                   id="newPassword"
                   type={showNewPassword ? "text" : "password"}
                   value={passwordData.newPassword}
-                  onChange={(e) => setPasswordData((prev) => ({ ...prev, newPassword: e.target.value }))}
+                  onChange={(e) =>
+                    setPasswordData((prev) => ({
+                      ...prev,
+                      newPassword: e.target.value,
+                    }))
+                  }
                   required
                   className="pr-10"
                 />
@@ -130,7 +178,12 @@ export function SecuritySettings() {
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   value={passwordData.confirmPassword}
-                  onChange={(e) => setPasswordData((prev) => ({ ...prev, confirmPassword: e.target.value }))}
+                  onChange={(e) =>
+                    setPasswordData((prev) => ({
+                      ...prev,
+                      confirmPassword: e.target.value,
+                    }))
+                  }
                   required
                   className="pr-10"
                 />
@@ -164,16 +217,24 @@ export function SecuritySettings() {
             <Shield className="h-5 w-5" />
             Two-Factor Authentication
           </CardTitle>
-          <CardDescription>Add an extra layer of security to your account</CardDescription>
+          <CardDescription>
+            Add an extra layer of security to your account
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="two-factor">Two-Factor Authentication</Label>
-              <p className="text-sm text-muted-foreground">Require a code from your phone to sign in</p>
+              <p className="text-sm text-muted-foreground">
+                Require a code from your phone to sign in
+              </p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant={securitySettings.twoFactorAuth ? "default" : "secondary"}>
+              <Badge
+                variant={
+                  securitySettings.twoFactorAuth ? "default" : "secondary"
+                }
+              >
                 {securitySettings.twoFactorAuth ? "Enabled" : "Disabled"}
               </Badge>
               <Switch
@@ -187,7 +248,9 @@ export function SecuritySettings() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="biometric">Biometric Authentication</Label>
-              <p className="text-sm text-muted-foreground">Use fingerprint or face recognition</p>
+              <p className="text-sm text-muted-foreground">
+                Use fingerprint or face recognition
+              </p>
             </div>
             <Switch
               id="biometric"
@@ -217,13 +280,17 @@ export function SecuritySettings() {
       <Card>
         <CardHeader>
           <CardTitle>Security Preferences</CardTitle>
-          <CardDescription>Configure additional security settings</CardDescription>
+          <CardDescription>
+            Configure additional security settings
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="login-notifications">Login Notifications</Label>
-              <p className="text-sm text-muted-foreground">Get notified of new sign-ins</p>
+              <p className="text-sm text-muted-foreground">
+                Get notified of new sign-ins
+              </p>
             </div>
             <Switch
               id="login-notifications"
@@ -235,7 +302,9 @@ export function SecuritySettings() {
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
               <Label htmlFor="session-timeout">Automatic Session Timeout</Label>
-              <p className="text-sm text-muted-foreground">Sign out after 30 minutes of inactivity</p>
+              <p className="text-sm text-muted-foreground">
+                Sign out after 30 minutes of inactivity
+              </p>
             </div>
             <Switch
               id="session-timeout"
@@ -250,18 +319,25 @@ export function SecuritySettings() {
       <Card>
         <CardHeader>
           <CardTitle>Trusted Devices</CardTitle>
-          <CardDescription>Manage devices that have access to your account</CardDescription>
+          <CardDescription>
+            Manage devices that have access to your account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {trustedDevices.map((device) => (
-              <div key={device.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div
+                key={device.id}
+                className="flex items-center justify-between p-4 border rounded-lg"
+              >
                 <div className="flex items-center gap-3">
                   <Smartphone className="h-5 w-5 text-muted-foreground" />
                   <div>
                     <p className="font-medium flex items-center gap-2">
                       {device.name}
-                      {device.current && <Badge variant="secondary">Current Device</Badge>}
+                      {device.current && (
+                        <Badge variant="secondary">Current Device</Badge>
+                      )}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       {device.location} • Last used {device.lastUsed}
@@ -289,15 +365,17 @@ export function SecuritySettings() {
           <div className="flex items-start gap-3">
             <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5" />
             <div>
-              <h4 className="font-medium text-orange-900">Security Recommendation</h4>
+              <h4 className="font-medium text-orange-900">
+                Security Recommendation
+              </h4>
               <p className="text-sm text-orange-700 mt-1">
-                We recommend enabling two-factor authentication and using a strong, unique password for maximum
-                security.
+                We recommend enabling two-factor authentication and using a
+                strong, unique password for maximum security.
               </p>
             </div>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

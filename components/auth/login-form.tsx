@@ -23,20 +23,33 @@ interface LoginFormProps {
 export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
+  const VALID_EMAIL = "mattwalst316@gmail.com";
+  const VALID_PASSWORD = "MattPsw90s";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // Redirect to dashboard on successful login
-    window.location.href = "/dashboard";
+    if (
+      formData.email === VALID_EMAIL &&
+      formData.password === VALID_PASSWORD
+    ) {
+      window.location.href = "/dashboard";
+    } else {
+      setIsLoading(false);
+      setError("Invalid Login details");
+    }
   };
 
   return (
@@ -63,6 +76,7 @@ export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
+          {error && <p className="text-sm text-red-500 text-center">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <Label
@@ -131,7 +145,7 @@ export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
             </Button>
           </form>
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <p className="text-sm text-muted-foreground">
               Don't have an account?{" "}
               <Button
@@ -142,7 +156,7 @@ export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
                 Create account
               </Button>
             </p>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </>
