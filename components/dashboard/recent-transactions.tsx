@@ -9,33 +9,33 @@ const transactions = [
   {
     id: 1,
     type: "received",
-    amount: 2500.0,
-    description: "Salary Payment",
-    date: "2024-01-15",
+    amount: 1500000.0,
+    description: "World Tour Performance Fee",
+    date: "2025-09-15",
     status: "completed",
   },
   {
     id: 2,
     type: "sent",
-    amount: 150.0,
-    description: "Grocery Store",
-    date: "2024-01-14",
+    amount: 25000.0,
+    description: "Luxury Shopping at Gucci",
+    date: "2025-09-14",
     status: "completed",
   },
   {
     id: 3,
     type: "sent",
-    amount: 75.5,
-    description: "Gas Station",
-    date: "2024-01-14",
+    amount: 7500.0,
+    description: "Private Jet Fuel",
+    date: "2025-09-13",
     status: "pending",
   },
   {
     id: 4,
     type: "received",
-    amount: 320.0,
-    description: "Freelance Work",
-    date: "2024-01-13",
+    amount: 200000.0,
+    description: "Brand Endorsement Payment",
+    date: "2025-09-12",
     status: "completed",
   },
 ];
@@ -91,7 +91,10 @@ export function RecentTransactions() {
                     }`}
                   >
                     {transaction.type === "received" ? "+" : "-"}$
-                    {transaction.amount.toFixed(2)}
+                    {transaction.amount.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </p>
                   <Badge
                     variant={
