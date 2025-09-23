@@ -11,17 +11,22 @@ export function WalletBalance() {
   const accounts = [
     {
       name: "Checking Account",
-      balance: 15420.75,
+      balance: 589214.33,
       type: "checking",
       icon: Wallet,
     },
     {
       name: "Savings Account",
-      balance: 8750.25,
+      balance: 472850.28,
       type: "savings",
       icon: Banknote,
     },
-    { name: "Credit Card", balance: -1250.0, type: "credit", icon: CreditCard },
+    {
+      name: "Credit Card",
+      balance: 366503.28,
+      type: "credit",
+      icon: CreditCard,
+    },
   ];
 
   const totalBalance = accounts.reduce(
