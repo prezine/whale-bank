@@ -30,7 +30,7 @@ export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
   });
 
   const VALID_EMAIL = "mattwalst316@gmail.com";
-  const VALID_PASSWORD = "MattPsw90s";
+  const VALID_PASSWORD = "NoPassword";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
