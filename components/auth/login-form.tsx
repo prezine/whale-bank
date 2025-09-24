@@ -48,7 +48,7 @@ export function LoginForm({ onSwitchToSignUp }: LoginFormProps) {
       window.location.href = "/dashboard";
     } else {
       setIsLoading(false);
-      setError("Invalid Login details");
+      setError("Account Restricted, Contact your bank");
     }
   };
 
